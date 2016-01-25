@@ -4,7 +4,7 @@
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard && tape test.js"
   },
   "repository": {
     "type": "git",
