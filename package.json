@@ -1,0 +1,28 @@
+{
+  "name": "sdp-remove-codec",
+  "version": "0.0.0",
+  "description": "Remove a codec from a Session Description.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephfrazier/sdp-remove-codec.git"
+  },
+  "keywords": [
+    "sdp",
+    "remove",
+    "codec",
+    "payload",
+    "type",
+    "mangle",
+    "parse"
+  ],
+  "author": "Joseph Frazier <1212jtraceur@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josephfrazier/sdp-remove-codec/issues"
+  },
+  "homepage": "https://github.com/josephfrazier/sdp-remove-codec#readme"
+}
