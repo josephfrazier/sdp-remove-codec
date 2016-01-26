@@ -26,8 +26,6 @@
   },
   "homepage": "https://github.com/josephfrazier/sdp-remove-codec#readme",
   "dependencies": {
-    "not": "^0.1.0",
-    "propprop": "^0.3.0",
     "sdp-transform": "^1.5.3"
   },
   "devDependencies": {
