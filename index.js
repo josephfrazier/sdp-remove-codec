@@ -4,18 +4,11 @@ var not = require('not')
 
 module.exports = sdpRemoveCodec
 
-function sdpRemoveCodec (options, sdp) {
-  if (typeof options === 'number') {
-    options = {
-      payloadType: options
-    }
-  }
-  var payloadType = options.payloadType
-  var targetMedium = options.medium || 'audio'
-
+function sdpRemoveCodec (payloadType, sdp) {
   var parsed = sdpTransform.parse(sdp)
-  var medium = parsed.media.filter(hasPropertyValue('type', targetMedium))[0]
-  removeMediumPayload(medium, payloadType)
+  parsed.media.forEach(function (medium) {
+    removeMediumPayload(medium, payloadType)
+  })
 
   var serialized = sdpTransform.write(parsed)
   return serialized
