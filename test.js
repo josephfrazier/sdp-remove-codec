@@ -21,6 +21,14 @@ test('removes payload type from m=audio line', function (t) {
   t.end()
 })
 
+test('removes a=rtcp-fb lines', function (t) {
+  removesLine(input, 100, 'a=rtcp-fb:100 ccm fir', t)
+  removesLine(input, 100, 'a=rtcp-fb:100 nack', t)
+  removesLine(input, 100, 'a=rtcp-fb:100 nack pli', t)
+  removesLine(input, 100, 'a=rtcp-fb:100 goog-remb', t)
+  t.end()
+})
+
 function removesLine (input, payloadType, badLine, t) {
   var output = sdpRemoveCodec(payloadType, input)
   t.ok(input.includes(badLine))
