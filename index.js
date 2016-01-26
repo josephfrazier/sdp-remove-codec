@@ -17,6 +17,7 @@ function sdpRemoveCodec (payloadType, sdp) {
 function removeMediumPayload (medium, payloadType) {
   removeAttributePayload(medium, 'rtp', payloadType)
   removeAttributePayload(medium, 'fmtp', payloadType)
+  removeAttributePayload(medium, 'rtcpFb', payloadType)
   medium.payloads = medium.rtp.map(pluck('payload')).join(' ')
 }
 
