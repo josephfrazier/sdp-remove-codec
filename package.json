@@ -4,6 +4,7 @@
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
+    "test:browser": "browserify -t brfs test.js | tap-closer | smokestack",
     "test": "standard && tape test.js"
   },
   "repository": {
