@@ -15,12 +15,16 @@ function sdpRemoveCodec (options, sdp) {
 
   var parsed = sdpTransform.parse(sdp)
   var medium = parsed.media.filter(hasPropertyValue('type', targetMedium))[0]
-  removeAttributePayload(medium, 'rtp', payloadType)
-  removeAttributePayload(medium, 'fmtp', payloadType)
-  medium.payloads = medium.rtp.map(pluck('payload')).join(' ')
+  removeMediumPayload(medium, payloadType)
 
   var serialized = sdpTransform.write(parsed)
   return serialized
+}
+
+function removeMediumPayload (medium, payloadType) {
+  removeAttributePayload(medium, 'rtp', payloadType)
+  removeAttributePayload(medium, 'fmtp', payloadType)
+  medium.payloads = medium.rtp.map(pluck('payload')).join(' ')
 }
 
 function removeAttributePayload (medium, attributeKey, payloadType) {
