@@ -1,10 +1,22 @@
 var sdpTransform = require('sdp-transform')
 var asArray = require('as-array')
+var concatMap = require('concat-map')
 
 module.exports = sdpRemoveCodec
 
-function sdpRemoveCodec (payloadTypes, sdp) {
-  return asArray(payloadTypes).reduce(sdpRemovePayload, sdp)
+function sdpRemoveCodec (codecs, sdp) {
+  var payloadTypes = concatMap(asArray(codecs), codec => payloadsOfCodec(sdp, codec))
+  return payloadTypes.reduce(sdpRemovePayload, sdp)
+}
+
+function payloadsOfCodec (sdp, codec) {
+  if (Number.isInteger(codec)) {
+    return [codec]
+  }
+  var parsed = sdpTransform.parse(sdp)
+  return concatMap(parsed.media, media => media.rtp)
+    .filter(rtp => rtp.codec === codec)
+    .map(rtp => rtp.payload)
 }
 
 function sdpRemovePayload (sdp, payloadType) {
