@@ -1,8 +1,13 @@
 var sdpTransform = require('sdp-transform')
+var asArray = require('as-array')
 
 module.exports = sdpRemoveCodec
 
-function sdpRemoveCodec (payloadType, sdp) {
+function sdpRemoveCodec (payloadTypes, sdp) {
+  return asArray(payloadTypes).reduce(sdpRemovePayload, sdp)
+}
+
+function sdpRemovePayload (sdp, payloadType) {
   var parsed = sdpTransform.parse(sdp)
   parsed.media.forEach(m => { removeMediumPayload(m, payloadType) })
 
