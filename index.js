@@ -15,7 +15,7 @@ function payloadsOfCodec (sdp, codec) {
   }
   var parsed = sdpTransform.parse(sdp)
   return concatMap(parsed.media, media => media.rtp)
-    .filter(rtp => rtp.codec === codec)
+    .filter(rtp => rtp.codec.match(codec))
     .map(rtp => rtp.payload)
 }
 
