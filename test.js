@@ -78,6 +78,22 @@ test('removes codec types matching regular expression', function (t) {
   t.end()
 })
 
+// https://stackoverflow.com/questions/1538512/how-can-i-invert-a-regular-expression-in-javascript/1538524#1538524
+// TODO make this more thorough
+// TODO export a helper function that builds the regex? What if the user only
+// cares about one media section? For example, forcing opus in this way would
+// remove all payload types from the video section.
+test('forces particular codecs with negative lookahead regular expression', function (t) {
+  var payloadTypes = /^(?!.*opus|VP8)/
+
+  var badLine = 'm=audio 56333 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 126'
+  var goodLine = 'm=audio 56333 UDP/TLS/RTP/SAVPF 111'
+  replacesLine(t, input, payloadTypes, badLine, goodLine)
+  console.log(sdpRemoveCodec(payloadTypes, input).indexOf(goodLine))
+
+  t.end()
+})
+
 function removesLine (t, input, payloadType, badLine) {
   var output = sdpRemoveCodec(payloadType, input)
   var inputLines = input.split('\r\n')
