@@ -32,6 +32,7 @@
     "sdp-transform": "^1.5.3"
   },
   "devDependencies": {
+    "array-includes": "^3.0.1",
     "brfs": "^1.4.3",
     "browserify": "^13.0.0",
     "smokestack": "^3.4.1",

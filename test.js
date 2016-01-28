@@ -1,6 +1,7 @@
 var test = require('tape')
 var sdpRemoveCodec = require('./')
 var fs = require('fs')
+var arrayIncludes = require('array-includes')
 
 var input = fs.readFileSync('./sdp.txt', 'utf8')
 
@@ -79,16 +80,20 @@ test('removes codec types matching regular expression', function (t) {
 
 function removesLine (t, input, payloadType, badLine) {
   var output = sdpRemoveCodec(payloadType, input)
-  t.ok(input.includes(badLine))
-  t.notOk(output.includes(badLine))
+  var inputLines = input.split('\r\n')
+  var outputLines = output.split('\r\n')
+  t.ok(arrayIncludes(inputLines, badLine))
+  t.notOk(arrayIncludes(outputLines, badLine))
 }
 
 function replacesLine (t, input, payloadType, badLine, goodLine) {
   var output = sdpRemoveCodec(payloadType, input)
+  var inputLines = input.split('\r\n')
+  var outputLines = output.split('\r\n')
 
-  t.ok(input.includes(badLine))
-  t.notOk(input.includes(goodLine))
+  t.ok(arrayIncludes(inputLines, badLine))
+  t.notOk(arrayIncludes(inputLines, goodLine))
 
-  t.ok(output.includes(goodLine))
-  t.notOk(output.includes(badLine))
+  t.ok(arrayIncludes(outputLines, goodLine))
+  t.notOk(arrayIncludes(outputLines, badLine))
 }
