@@ -61,6 +61,22 @@ test('removes array of codec types', function (t) {
   t.end()
 })
 
+test('removes codec types matching regular expression', function (t) {
+  var payloadTypes = /OpUs|vp8/i
+  removesLine(t, input, payloadTypes, 'a=rtpmap:111 opus/48000/2')
+
+  var badLine = 'm=audio 56333 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 126'
+  var goodLine = 'm=audio 56333 UDP/TLS/RTP/SAVPF 103 104 9 0 8 106 105 13 126'
+  replacesLine(t, input, payloadTypes, badLine, goodLine)
+
+  removesLine(t, input, payloadTypes, 'a=rtcp-fb:100 ccm fir')
+  removesLine(t, input, payloadTypes, 'a=rtcp-fb:100 nack')
+  removesLine(t, input, payloadTypes, 'a=rtcp-fb:100 nack pli')
+  removesLine(t, input, payloadTypes, 'a=rtcp-fb:100 goog-remb')
+
+  t.end()
+})
+
 function removesLine (t, input, payloadType, badLine) {
   var output = sdpRemoveCodec(payloadType, input)
   t.ok(input.includes(badLine))
