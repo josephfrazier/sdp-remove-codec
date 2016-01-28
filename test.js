@@ -1,3 +1,4 @@
+// TODO dedupe tests into helper functions for detecting codec absence/presence?
 var test = require('tape')
 var sdpRemoveCodec = require('./')
 var fs = require('fs')
