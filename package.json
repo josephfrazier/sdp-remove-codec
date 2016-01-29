@@ -4,9 +4,9 @@
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
-    "test:integration": "browserify test-integration.js | tap-closer | smokestack -b firefox",
-    "test:browser": "browserify -t brfs test.js | tap-closer | smokestack",
-    "test": "standard && tape test.js"
+    "test:integration": "browserify test/integration.js | tap-closer | smokestack -b firefox",
+    "test:browser": "browserify -t brfs test/unit.js | tap-closer | smokestack",
+    "test": "standard && tape test/unit.js"
   },
   "repository": {
     "type": "git",

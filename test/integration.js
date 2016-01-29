@@ -1,5 +1,5 @@
 var test = require('tape')
-var sdpRemoveCodec = require('./')
+var sdpRemoveCodec = require('../')
 var SIP = require('sip.js')
 
 test('setting a peer connection local description after removing PCMU', function (t) {

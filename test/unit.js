@@ -1,10 +1,11 @@
 // TODO dedupe tests into helper functions for detecting codec absence/presence?
 var test = require('tape')
-var sdpRemoveCodec = require('./')
+var sdpRemoveCodec = require('../')
 var fs = require('fs')
 var arrayIncludes = require('array-includes')
+var path = require('path')
 
-var input = fs.readFileSync('./sdp.txt', 'utf8')
+var input = fs.readFileSync(path.join(__dirname, 'sdp.txt'), 'utf8')
 
 test('removes a=rtpmap line', function (t) {
   removesLine(t, input, 111, 'a=rtpmap:111 opus/48000/2')
