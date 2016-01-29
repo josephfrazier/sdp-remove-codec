@@ -4,6 +4,7 @@
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
+    "test:integration": "browserify test-integration.js | tap-closer | smokestack -b firefox",
     "test:browser": "browserify -t brfs test.js | tap-closer | smokestack",
     "test": "standard && tape test.js"
   },
@@ -35,6 +36,7 @@
     "array-includes": "^3.0.1",
     "brfs": "^1.4.3",
     "browserify": "^13.0.0",
+    "sip.js": "^0.7.3",
     "smokestack": "^3.4.1",
     "standard": "^5.4.1",
     "tap-closer": "^1.0.0",
