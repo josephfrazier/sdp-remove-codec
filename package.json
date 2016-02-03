@@ -1,6 +1,6 @@
 {
   "name": "sdp-remove-codec",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
