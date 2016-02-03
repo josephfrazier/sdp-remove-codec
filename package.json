@@ -4,6 +4,7 @@
   "description": "Remove a codec from a Session Description.",
   "main": "index.js",
   "scripts": {
+    "demo": "browserify demo.js | smokestack -b firefox",
     "test:integration": "browserify test/integration.js | tap-closer | smokestack -b firefox",
     "test:browser": "browserify -t brfs test/unit.js | tap-closer | smokestack",
     "test": "standard && tape test/unit.js"
